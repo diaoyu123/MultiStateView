@@ -247,7 +247,7 @@ public class MultiStateView extends FrameLayout {
                     throw new NullPointerException("Loading View");
                 }
 
-                if (mContentView != null) mContentView.setVisibility(View.GONE);
+                if (mContentView != null) mContentView.setVisibility(View.INVISIBLE);
                 if (mErrorView != null) mErrorView.setVisibility(View.GONE);
                 if (mEmptyView != null) mEmptyView.setVisibility(View.GONE);
 
@@ -269,7 +269,7 @@ public class MultiStateView extends FrameLayout {
 
                 if (mLoadingView != null) mLoadingView.setVisibility(View.GONE);
                 if (mErrorView != null) mErrorView.setVisibility(View.GONE);
-                if (mContentView != null) mContentView.setVisibility(View.GONE);
+                if (mContentView != null) mContentView.setVisibility(View.INVISIBLE);
 
                 if (mAnimateViewChanges) {
                     animateLayoutChange(getView(previousState));
@@ -288,7 +288,7 @@ public class MultiStateView extends FrameLayout {
 
 
                 if (mLoadingView != null) mLoadingView.setVisibility(View.GONE);
-                if (mContentView != null) mContentView.setVisibility(View.GONE);
+                if (mContentView != null) mContentView.setVisibility(View.INVISIBLE);
                 if (mEmptyView != null) mEmptyView.setVisibility(View.GONE);
 
                 if (mAnimateViewChanges) {
@@ -453,7 +453,7 @@ public class MultiStateView extends FrameLayout {
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                previousView.setVisibility(View.GONE);
+                previousView.setVisibility(isValidContentView(previousView) ? View.INVISIBLE : View.GONE);
                 getView(mViewState).setVisibility(View.VISIBLE);
                 ObjectAnimator.ofFloat(getView(mViewState), "alpha", 0.0f, 1.0f).setDuration(250L).start();
             }
