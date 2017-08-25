@@ -126,8 +126,8 @@ public class MultiStateView extends FrameLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-//        if (mContentView == null) throw new IllegalArgumentException("Content view is not defined");
-//        setView(VIEW_STATE_UNKNOWN);
+        if (mContentView == null) throw new IllegalArgumentException("Content view is not defined");
+        setView(VIEW_STATE_UNKNOWN);
     }
 
     /* All of the addView methods have been overridden so that it can obtain the content view via XML
